@@ -24,7 +24,7 @@ const hide = (elem) => {
   elem.style.display = 'none';
 };
 
-// activeNote is used to keep track of the note in the textarea
+
 let activeNote = {};
 
 const getNotes = () =>
@@ -99,7 +99,7 @@ const handleNoteDelete = (e) => {
   });
 };
 
-// Sets the activeNote and displays it
+
 const handleNoteView = (e) => {
   e.preventDefault();
   activeNote = JSON.parse(e.target.parentElement.getAttribute('data-note'));
@@ -107,7 +107,6 @@ const handleNoteView = (e) => {
   show(newNoteBtn);
 };
 
-// Sets the activeNote to and empty object and allows the user to enter a new note
 const handleNewNoteView = (e) => {
   activeNote = {};
   renderActiveNote();
@@ -115,7 +114,6 @@ const handleNewNoteView = (e) => {
   hide(newNoteBtn);
 };
 
-// Code to handle whether the save button or clear button should be displayed
 const handleRenderClearBtn = () => {
   if (noteTitle.value.trim() === "" || noteText.value.trim() === "" || noteTitle.hasAttribute('readonly')) {
     hide(clearNoteBtn);
@@ -134,7 +132,6 @@ const handleRenderSaveBtn = () => {
   }
 };
 
-// Render the list of note titles
 const renderNoteList = async (notes) => {
   let jsonNotes = await notes.json();
   if (window.location.pathname === '/notes') {
@@ -143,7 +140,6 @@ const renderNoteList = async (notes) => {
 
   let noteListItems = [];
 
-  // Returns HTML element with or without a delete button
   const createLi = (text, delBtn = true) => {
     const liEl = document.createElement('li');
     liEl.classList.add('list-group-item');
@@ -188,7 +184,6 @@ const renderNoteList = async (notes) => {
   }
 };
 
-// Gets notes from the db and renders them to the sidebar
 const getAndRenderNotes = () => getNotes().then(renderNoteList);
 
 if (window.location.pathname === '/notes') {
